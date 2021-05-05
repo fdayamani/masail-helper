@@ -1,0 +1,15 @@
+steps:
+  - name: 'gradle:7.0.0-jdk11'
+    entrypoint: 'gradle'
+    args: ['jib']
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args: ['run', 'deploy', 'masail-helper', '--image', 'gcr.io/codified-fiqh/masail-helper', '--project', 'codified-fiqh', '--platform', 'managed', '--region', 'us-east1']
+  - name: 'docker'
+    args: ['build', '-t', 'gcr.io/codified-fiqh/ui', '.']
+    dir: './ui'
+  - name: 'docker'
+    args: ['push', 'gcr.io/codified-fiqh/ui']
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args: ['run', 'deploy', 'ui', '--image', 'gcr.io/codified-fiqh/ui', '--project', 'codified-fiqh', '--platform', 'managed', '--region', 'us-east1']
