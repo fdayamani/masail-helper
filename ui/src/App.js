@@ -1,8 +1,8 @@
 import './App.css';
-import Hello from "./Hello"
+import Rakaat from "./Rakaat"
 
 function App() {
-  return <Hello/>
+  return <Rakaat/>
 }
 
 export default App;
