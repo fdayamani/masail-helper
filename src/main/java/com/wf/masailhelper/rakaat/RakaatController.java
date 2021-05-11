@@ -42,9 +42,7 @@ public class RakaatController {
     @GetMapping("/rakaat")
     public List<RemedialAction> remedy() {
         Doubt doubt = new Doubt(salaat, options, action);
-        System.out.println(doubt);
         List<RemedialAction> calculate = RemedialCalculator.calculate(doubt);
-        System.out.println(calculate);
         return calculate;
     }
 }

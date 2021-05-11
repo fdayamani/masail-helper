@@ -25,11 +25,11 @@ class Remedy extends Component {
            <Button onClick={() => this.getRemedy()}>
                 Get Remedial Action
            </Button>
-           <p>{this.state.remedy.map(element =>
-           "Assumption: " + element.assumption + "\n" +
-           "Action: " + element.actionType + "\n" +
-           "Number: " + element.number
-            )}</p>
+           <div style={{"white-space": "pre-wrap"}}>{this.state.remedy.map(element =>
+           "Assume this is your " + element.assumption + " rak'ah \n\n" +
+           "Perform " + element.number + " units of " + element.actionType.name + " " + element.actionType.mode + "\n\n" +
+           "Method: \n" + element.actionType.method
+            )}</div>
        </div>
     }
 }
