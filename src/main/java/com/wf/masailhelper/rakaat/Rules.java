@@ -16,6 +16,9 @@ public class Rules {
                 new Remedy(4, List.of(new RemedialAction(SALAATUL_IHTIYAAT_EITHER, 1))),
         new Doubt(4, List.of(2, 3, 4), SECOND_SUJOOD),
                 new Remedy(4, List.of(new RemedialAction(SALAATUL_IHTIYAAT_STANDING, 2),
-                                                new RemedialAction(SALAATUL_IHTIYAAT_SITTING, 2)))
+                                                new RemedialAction(SALAATUL_IHTIYAAT_SITTING, 2))),
+        new Doubt(4, List.of(4, 5), SECOND_SUJOOD),
+                new Remedy(4, List.of(new RemedialAction(SALAATUL_IHTIYAAT_EITHER, 1),
+                                                new RemedialAction(SAJDATUS_SAHW, 2)))
     );
 }

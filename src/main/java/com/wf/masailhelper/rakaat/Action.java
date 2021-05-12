@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 public enum Action {
-    QIYAM("Qiyam"),
+    QIYAM("Qiyam before ruku"),
     SECOND_SUJOOD ("During or after second Sujood"),
     AFTER_SALAAT("After Salaat"),
     OTHER ("None of the above");

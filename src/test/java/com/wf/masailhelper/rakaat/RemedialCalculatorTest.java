@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static com.wf.masailhelper.rakaat.Action.SECOND_SUJOOD;
+import static com.wf.masailhelper.rakaat.RemedialActionType.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RemedialCalculatorTest {
@@ -14,7 +15,7 @@ class RemedialCalculatorTest {
     considerThirdAndOneUnitOfIhtiyatIfConflictedBetween2And3AfterSecondSujoodIn4UnitPrayer() {
         Doubt doubt = new Doubt(4, List.of(2, 3), SECOND_SUJOOD);
 
-        Remedy expected = new Remedy(3, List.of(new RemedialAction(RemedialActionType.SALAATUL_IHTIYAAT_STANDING, 1)));
+        Remedy expected = new Remedy(3, List.of(new RemedialAction(SALAATUL_IHTIYAAT_STANDING, 1)));
 
         assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
     }
@@ -24,7 +25,7 @@ class RemedialCalculatorTest {
     considerFourthAndTwoUnitsOfIhtiyatIfConflictedBetween2And4AfterSecondSujoodIn4UnitPrayer() {
         Doubt doubt = new Doubt(4, List.of(2, 4), SECOND_SUJOOD);
 
-        Remedy expected = new Remedy(4, List.of(new RemedialAction(RemedialActionType.SALAATUL_IHTIYAAT_STANDING, 2)));
+        Remedy expected = new Remedy(4, List.of(new RemedialAction(SALAATUL_IHTIYAAT_STANDING, 2)));
 
         assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
     }
@@ -35,8 +36,8 @@ class RemedialCalculatorTest {
         Doubt doubt = new Doubt(4, List.of(2, 3, 4), SECOND_SUJOOD);
 
         Remedy expected = new Remedy(4,
-                List.of(new RemedialAction(RemedialActionType.SALAATUL_IHTIYAAT_STANDING, 2),
-                        new RemedialAction(RemedialActionType.SALAATUL_IHTIYAAT_SITTING, 2)));
+                List.of(new RemedialAction(SALAATUL_IHTIYAAT_STANDING, 2),
+                        new RemedialAction(SALAATUL_IHTIYAAT_SITTING, 2)));
         assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
     }
 
@@ -46,7 +47,19 @@ class RemedialCalculatorTest {
         Doubt doubt = new Doubt(4, List.of(3, 4), SECOND_SUJOOD);
 
         Remedy expected = new Remedy(4,
-                List.of(new RemedialAction(RemedialActionType.SALAATUL_IHTIYAAT_EITHER, 1)));
+                List.of(new RemedialAction(SALAATUL_IHTIYAAT_EITHER, 1)));
+        assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
+    }
+
+    @Test
+    public void
+    considerFourthAndTwoUnitsOfIhtiyatSittingOrOneStandingIfConflictedBetween4And5AfterSecondSujoodIn4UnitPrayer() {
+        Doubt doubt = new Doubt(4, List.of(4, 5), SECOND_SUJOOD);
+
+        Remedy expected = new Remedy(4,
+                List.of(new RemedialAction(SALAATUL_IHTIYAAT_EITHER, 1),
+                        new RemedialAction(SAJDATUS_SAHW, 2)
+                        ));
         assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
     }
 
