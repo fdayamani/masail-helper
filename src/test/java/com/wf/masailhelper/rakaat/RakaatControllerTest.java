@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 class RakaatControllerTest {
 
@@ -25,7 +26,7 @@ class RakaatControllerTest {
     }
 
     @Test public void
-    throwsExceptionIfThereAreAlreadyTwoOptions() {
+    throwsExceptionIfThereAreAlreadyThreeOptions() {
         String option1 = "2";
         String option2 = "3";
         String option3 = "4";
@@ -39,13 +40,15 @@ class RakaatControllerTest {
     }
 
     @Test public void
-    doesNothingIfThereAreAlreadyTwoOptions() {
+    allowsDeselectionIfThereAreAlreadyThreeOptions() {
         String option1 = "2";
-        String option2 = "4";
+        String option2 = "3";
+        String option3 = "4";
         underTest.options(option1);
         underTest.options(option2);
-        underTest.options("3");
+        underTest.options(option3);
         assertThat(underTest.options).contains(Integer.valueOf(option1), Integer.valueOf(option2));
+        assertDoesNotThrow(() -> underTest.options(option3));
     }
 
 }

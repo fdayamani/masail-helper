@@ -28,13 +28,12 @@ public class RakaatController {
     @PostMapping("/option")
     public void options(@RequestBody String optionString) {
         Integer option = Integer.valueOf(optionString);
-        if (this.options.size() == 3) {
-            throw new UnsupportedOperationException("You already have three options! Please deselect one first " + options);
-        }
         if (this.options.contains(option)) {
             this.options.remove(option);
+        } else if (this.options.size() < 3) {
+                this.options.add(option);
         } else {
-            this.options.add(option);
+            throw new UnsupportedOperationException("You already have three options! Please deselect one first " + options);
         }
     }
 

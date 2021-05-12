@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 class ActionTest {
     @Test public void
     returnsQiyamFromQiyam() {
-        assertThat(from("Qiyam")).isEqualTo(Action.QIYAM);
+        assertThat(from("Qiyam before ruku")).isEqualTo(Action.QIYAM);
     }
 
     @Test public void
