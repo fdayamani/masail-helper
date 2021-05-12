@@ -37,7 +37,7 @@ public class RakaatController {
             throw new UnsupportedOperationException("You already have two options! Please deselect one first " + options);
         }
         if (this.options.contains(option)) {
-            this.options.remove((Integer) option);
+            this.options.remove(option);
         } else {
             this.options.add(option);
         }

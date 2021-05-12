@@ -21,4 +21,15 @@ class RemedialCalculatorTest {
         assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
     }
 
+    @Test
+    public void
+    considerFourthAndTwoUnitsOfIhtiyatIfConflictedBetween2And4AfterSecondSujoodIn4UnitPrayer() {
+        Doubt doubt = new Doubt(DHUHR, List.of(2, 4), SECOND_SUJOOD);
+
+        List<RemedialAction> expected = List.of(
+                new RemedialAction(4, RemedialActionType.SALAATUL_IHTIYAAT_STANDING, 2)
+        );
+        assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
+    }
+
 }
