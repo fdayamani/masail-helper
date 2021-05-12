@@ -2,6 +2,7 @@ package com.wf.masailhelper.rakaat;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import static java.util.stream.Collectors.toList;
 public class RakaatController {
     Action action;
     Salaat salaat;
-    List<Integer> options;
+    List<Integer> options = new ArrayList<>();
 
     @GetMapping("/salaatOptions")
     public List<Salaat> salaatOptions() {
@@ -29,9 +30,17 @@ public class RakaatController {
         this.salaat = Salaat.valueOf(salaatString);
     }
 
-    @PostMapping("/options")
-    public void options(@RequestBody List<Integer> options) {
-        this.options = options;
+    @PostMapping("/option")
+    public void options(@RequestBody String optionString) {
+        Integer option = Integer.valueOf(optionString);
+        if (this.options.size() == 2) {
+            throw new UnsupportedOperationException("You already have two options! Please deselect one first " + options);
+        }
+        if (this.options.contains(option)) {
+            this.options.remove((Integer) option);
+        } else {
+            this.options.add(option);
+        }
     }
 
     @PostMapping("/action")

@@ -6,19 +6,17 @@ class Options extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {options: []}
-    }
-
-    componentDidUpdate(prevState) {
-        if (this.state.options.size === 2) {RakaatData.sendOptionsData(this.state.options)}
+        this.sendOption = RakaatData.sendOptionData
+        this.state = {errors: []}
     }
 
     render() {
        return <div>
             <p>Which rakaats were you confused between? (Select 2)</p>
             {[...Array(6).keys()].map(key => key + 1).map(
-                option => <Button key={option} onClick={() => this.setState({options: [...this.state.options, option]})}>{option}</Button>
+                option => <Button key={option} onClick={() => this.sendOption(option)}>{option}</Button>
             )}
+           {this.state.errors.length > 1 ? this.state.errors.map(error => <p>error</p>) : <div></div>}
        </div>
     }
 }

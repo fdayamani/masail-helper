@@ -13,8 +13,9 @@ class RakaatData {
         axios.post(`${BASE_URL}/salaat/`, salaat, { headers: { "Content-Type": "text/plain" } })
     }
 
-    sendOptionsData([option1, option2]) {
-        axios.post(`${BASE_URL}/salaat/`, {options: [option1, option2]}, { headers: { "Content-Type": "application/json" } })
+    sendOptionData(option) {
+        axios.post(`${BASE_URL}/option/`, option, { headers: { "Content-Type": "text/plain" } })
+             .catch(error => console.log(error.response.data.message))
     }
 
     actionOptions() {
