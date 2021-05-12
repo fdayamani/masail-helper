@@ -33,8 +33,8 @@ public class RakaatController {
     @PostMapping("/option")
     public void options(@RequestBody String optionString) {
         Integer option = Integer.valueOf(optionString);
-        if (this.options.size() == 2) {
-            throw new UnsupportedOperationException("You already have two options! Please deselect one first " + options);
+        if (this.options.size() == 3) {
+            throw new UnsupportedOperationException("You already have three options! Please deselect one first " + options);
         }
         if (this.options.contains(option)) {
             this.options.remove(option);
@@ -49,9 +49,9 @@ public class RakaatController {
     }
 
     @GetMapping("/rakaat")
-    public List<RemedialAction> remedy() {
+    public Remedy remedy() {
         Doubt doubt = new Doubt(salaat, options, action);
-        List<RemedialAction> calculate = RemedialCalculator.calculate(doubt);
+        Remedy calculate = RemedialCalculator.calculate(doubt);
         return calculate;
     }
 }
