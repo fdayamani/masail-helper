@@ -5,15 +5,10 @@ import org.junit.jupiter.api.Test;
 import java.util.NoSuchElementException;
 
 import static com.wf.masailhelper.rakaat.Action.from;
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 class ActionTest {
-//    QIYAM("Qiyam"),
-//    SECOND_SUJOOD ("During or after second Sujood"),
-//    AFTER_SALAAT("After Salaat"),
-//    OTHER ("None of the above");
-
     @Test public void
     returnsQiyamFromQiyam() {
         assertThat(from("Qiyam")).isEqualTo(Action.QIYAM);

@@ -7,7 +7,7 @@ class Remedy extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {remedy: []}
+        this.state = {remedy: {assumption: 0, actions: []}}
     }
 
     getRemedy() {
@@ -15,7 +15,7 @@ class Remedy extends Component {
             .then(
                 response => {
                     console.log(response);
-                    this.setState({remedy: response.data})
+                    this.setState({remedy: {assumption: response.data.assumption, actions: response.data.actions}})
                 }
             )
     }
@@ -25,11 +25,14 @@ class Remedy extends Component {
            <Button onClick={() => this.getRemedy()}>
                 Get Remedial Action
            </Button>
-           <div style={{"whiteSpace": "pre-wrap"}}>{this.state.remedy.map(element =>
-           "Assume this is your " + element.assumption + " rak'ah \n\n" +
-           "Perform " + element.number + " units of " + element.actionType.name + " " + element.actionType.mode + "\n\n" +
-           "Method: \n" + element.actionType.method
-            )}</div>
+           <div>
+           {this.state.remedy.assumption > 0 ? "Assume this is your " + this.state.remedy.assumption + " rak'ah \n\n" : ""}
+           </div>
+           <div style={{"whiteSpace": "pre-wrap"}}>{this.state.remedy.actions.map(element =>
+                         "Perform " + element.number + " units of " + element.actionType.name + " " + element.actionType.mode + "\n\n" +
+                         "Method: \n" + element.actionType.method
+                       )}
+           </div>
        </div>
     }
 }

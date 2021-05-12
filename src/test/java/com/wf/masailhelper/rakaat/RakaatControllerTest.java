@@ -27,13 +27,15 @@ class RakaatControllerTest {
     @Test public void
     throwsExceptionIfThereAreAlreadyTwoOptions() {
         String option1 = "2";
-        String option2 = "4";
+        String option2 = "3";
+        String option3 = "4";
         underTest.options(option1);
         underTest.options(option2);
-        assertThat(underTest.options).contains(Integer.valueOf(option1), Integer.valueOf(option2));
-        assertThatThrownBy(() -> underTest.options("3"))
+        underTest.options(option3);
+        assertThat(underTest.options).contains(Integer.valueOf(option1), Integer.valueOf(option2), Integer.valueOf(option3));
+        assertThatThrownBy(() -> underTest.options("5"))
                 .isInstanceOf(UnsupportedOperationException.class)
-                .hasMessage("You already have two options! Please deselect one first [2, 4]");
+                .hasMessage("You already have three options! Please deselect one first [2, 3, 4]");
     }
 
     @Test public void

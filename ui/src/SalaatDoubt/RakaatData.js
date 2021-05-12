@@ -5,12 +5,8 @@ const BASE_URL = config.BASE_URL
 
 class RakaatData {
 
-    salaatOptions() {
-        return axios.get(`${BASE_URL}/salaatOptions`);
-    }
-
-    sendSalaatData(salaat) {
-        axios.post(`${BASE_URL}/salaat/`, salaat, { headers: { "Content-Type": "text/plain" } })
+    sendSalaatData(rakaat) {
+        axios.post(`${BASE_URL}/rakaat/`, rakaat, { headers: { "Content-Type": "text/plain" } })
     }
 
     sendOptionData(option) {
@@ -27,7 +23,7 @@ class RakaatData {
     }
 
     remedy() {
-        return axios.get(`${BASE_URL}/rakaat`);
+        return axios.get(`${BASE_URL}/remedy`);
     }
 }
 
