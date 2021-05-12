@@ -12,7 +12,8 @@ public enum RemedialActionType {
     IGNORE_DOUBT("Ignore Doubt", "Do nothing", Optional.empty()),
     SAJDATUS_SAHW("Sajdatus Sahw", Constants.SAJDATUS_SAHW_MATHOD, Optional.empty()),
     SALAATUL_IHTIYAAT_STANDING("Salaatul Ihtiyaat", Constants.SALAATUL_IHTIYAAT_METHOD, Optional.of("standing")),
-    SALAATUL_IHTIYAAT_SITTING("Salaatul Ihtiyaat", Constants.SALAATUL_IHTIYAAT_METHOD, Optional.of("sitting"));
+    SALAATUL_IHTIYAAT_SITTING("Salaatul Ihtiyaat", Constants.SALAATUL_IHTIYAAT_METHOD, Optional.of("sitting")),
+    SALAATUL_IHTIYAAT_EITHER("Salaatul Ihtiyaat", Constants.SALAATUL_IHTIYAAT_METHOD, Optional.of("either 1 standing or 2 sitting"));
 
     private final String name;
     private final String method;
