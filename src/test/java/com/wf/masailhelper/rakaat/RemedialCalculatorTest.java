@@ -7,6 +7,7 @@ import java.util.List;
 import static com.wf.masailhelper.rakaat.Action.QIYAM;
 import static com.wf.masailhelper.rakaat.Action.SECOND_SUJOOD;
 import static com.wf.masailhelper.rakaat.RemedialActionType.*;
+import static com.wf.masailhelper.rakaat.RemedialCalculator.calculate;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class RemedialCalculatorTest {
@@ -18,7 +19,7 @@ class RemedialCalculatorTest {
 
         Remedy expected = new Remedy(3, List.of(new RemedialAction(SALAATUL_IHTIYAAT_STANDING, 1)));
 
-        assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
+        assertThat(calculate(doubt)).isEqualTo(expected);
     }
 
     @Test
@@ -28,7 +29,7 @@ class RemedialCalculatorTest {
 
         Remedy expected = new Remedy(4, List.of(new RemedialAction(SALAATUL_IHTIYAAT_STANDING, 2)));
 
-        assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
+        assertThat(calculate(doubt)).isEqualTo(expected);
     }
 
     @Test
@@ -40,7 +41,7 @@ class RemedialCalculatorTest {
                 List.of(new RemedialAction(SALAATUL_IHTIYAAT_STANDING, 2),
                         new RemedialAction(SALAATUL_IHTIYAAT_SITTING, 2)));
 
-        assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
+        assertThat(calculate(doubt)).isEqualTo(expected);
     }
 
     @Test
@@ -51,7 +52,7 @@ class RemedialCalculatorTest {
         Remedy expected = new Remedy(4,
                 List.of(new RemedialAction(SALAATUL_IHTIYAAT_EITHER, 1)));
 
-        assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
+        assertThat(calculate(doubt)).isEqualTo(expected);
     }
 
     @Test
@@ -63,7 +64,7 @@ class RemedialCalculatorTest {
                 List.of(new RemedialAction(SALAATUL_IHTIYAAT_EITHER, 1),
                         new RemedialAction(SAJDATUS_SAHW, 2)
                         ));
-        assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
+        assertThat(calculate(doubt)).isEqualTo(expected);
     }
 
     @Test
@@ -74,7 +75,7 @@ class RemedialCalculatorTest {
         Remedy expected = new Remedy(4,
                 List.of(new RemedialAction(SALAATUL_IHTIYAAT_EITHER, 1)));
 
-        assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
+        assertThat(calculate(doubt)).isEqualTo(expected);
     }
 
     @Test
@@ -85,7 +86,7 @@ class RemedialCalculatorTest {
         Remedy expected = new Remedy(4,
                 List.of(new RemedialAction(SALAATUL_IHTIYAAT_EITHER, 1)));
 
-        assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
+        assertThat(calculate(doubt)).isEqualTo(expected);
     }
 
     @Test
@@ -96,7 +97,7 @@ class RemedialCalculatorTest {
         Remedy expected = new Remedy(4,
                 List.of(new RemedialAction(SALAATUL_IHTIYAAT_STANDING, 2)));
 
-        assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
+        assertThat(calculate(doubt)).isEqualTo(expected);
     }
 
     @Test
@@ -108,7 +109,7 @@ class RemedialCalculatorTest {
                 List.of(new RemedialAction(SALAATUL_IHTIYAAT_STANDING, 2),
                         new RemedialAction(SALAATUL_IHTIYAAT_SITTING, 2)
                         ));
-        assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
+        assertThat(calculate(doubt)).isEqualTo(expected);
     }
 
     @Test
@@ -119,7 +120,16 @@ class RemedialCalculatorTest {
         Remedy expected = new Remedy(4,
                 List.of(new RemedialAction(SAJDATUS_SAHW, 2)));
 
-        assertThat(RemedialCalculator.calculate(doubt)).isEqualTo(expected);
+        assertThat(calculate(doubt)).isEqualTo(expected);
+    }
+
+    @Test public void
+    anyOtherDoubtIn4UnitPrayerInvalidatesPrayer() {
+        Doubt someOtherDoubt = new Doubt (4, List.of(1, 2), QIYAM);
+
+        Remedy expected = new Remedy(SALAAT_INVALID);
+
+        assertThat(calculate(someOtherDoubt)).isEqualTo(expected);
     }
 
 }
