@@ -14,8 +14,8 @@ public class Remedy {
         this.actions = actions;
     }
 
-    public Remedy(RemedialActionType salaatInvalid) {
-        this(0, List.of(new RemedialAction(SALAAT_INVALID, 0)));
+    public Remedy(RemedialActionType actionType) {
+        this(0, List.of(new RemedialAction(actionType, 0)));
     }
 
     public int getAssumption() {

@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static com.wf.masailhelper.rakaat.Action.QIYAM;
-import static com.wf.masailhelper.rakaat.Action.SECOND_SUJOOD;
+import static com.wf.masailhelper.rakaat.Action.*;
 import static com.wf.masailhelper.rakaat.RemedialActionType.*;
 import static com.wf.masailhelper.rakaat.RemedialCalculator.calculate;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -119,6 +118,16 @@ class RemedialCalculatorTest {
 
         Remedy expected = new Remedy(4,
                 List.of(new RemedialAction(SAJDATUS_SAHW, 2)));
+
+        assertThat(calculate(doubt)).isEqualTo(expected);
+    }
+
+    @Test
+    public void
+    ignoreDoubtIfItOccursAfterPrayer() {
+        Doubt doubt = new Doubt(4, List.of(3, 4), AFTER_SALAAT);
+
+        Remedy expected = new Remedy(IGNORE_DOUBT);
 
         assertThat(calculate(doubt)).isEqualTo(expected);
     }

@@ -6,12 +6,17 @@ import java.util.Objects;
 public class Doubt {
     private final int numberOfRakah;
     private final List<Integer> options;
+
     private final Action action;
 
     public Doubt(int numberOfRakah, List<Integer> options, Action action) {
         this.numberOfRakah = numberOfRakah;
         this.options = options;
         this.action = action;
+    }
+
+    public Action getAction() {
+        return action;
     }
 
     @Override
