@@ -12,7 +12,7 @@ class Options extends Component {
 
     render() {
        return <div>
-            <p>Which rakaats were you confused between? (Select 2)</p>
+            <p>Which rakaats were you confused between? (Select up to 3)</p>
             {[...Array(6).keys()].map(key => key + 1).map(
                 option => <Button key={option} onClick={() => this.sendOption(option)}>{option}</Button>
             )}

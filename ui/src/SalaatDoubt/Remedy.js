@@ -29,8 +29,11 @@ class Remedy extends Component {
            {this.state.remedy.assumption > 0 ? "Assume this is your " + this.state.remedy.assumption + " rak'ah \n\n" : ""}
            </div>
            <div style={{"whiteSpace": "pre-wrap"}}>{this.state.remedy.actions.map(element =>
+                        this.state.remedy.assumption > 0 ?
                          "Perform " + element.number + " units of " + element.actionType.name + " " + element.actionType.mode + "\n\n" +
                          "Method: \n" + element.actionType.method
+                         :
+                         element.actionType.name
                        )}
            </div>
        </div>
